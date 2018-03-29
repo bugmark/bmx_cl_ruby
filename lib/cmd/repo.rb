@@ -7,6 +7,14 @@ class Repo < ThorBase
     output(list.get_repos.map {|repo| repo.to_hash}, cache_file)
   end
 
+  desc "list_details", "list all repo details"
+  option :cache_file  , desc: "local cache file"  , type: :string
+  def list_details
+    list = BmxApiRuby::ReposApi.new(client)
+    cache_file = options["cache_file"] || "repos"
+    output(list.get_repos.map {|repo| repo.to_hash}, cache_file)
+  end
+
   desc "show REPO_UUID", "show repo details"
   option :issues , desc: "include issues", type: :boolean
   def show(repo_uuid)

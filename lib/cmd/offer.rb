@@ -16,6 +16,21 @@ class Offer < ThorBase
     output(list.get_offers(opts).map {|offer| offer.to_hash}, cache_file)
   end
 
+  desc "list_details", "list offer details"
+  option :with_type   , desc: "type query"       , type: :string
+  option :with_status , desc: "status query"     , type: :string
+  option :limit       , desc: "limit"            , type: :numeric
+  option :cache_file  , desc: "local cache file" , type: :string
+  def list_details
+    list = BmxApiRuby::OffersApi.new(client)
+    opts = {}
+    opts[:with_type] = options[:with_type] if options[:with_type]
+    opts[:status]    = options[:status]    if options[:status]
+    opts[:limit]     = options[:limit]     if options[:limit]
+    cache_file       = options["cache_file"] || "offers"
+    output(list.get_offers_detail(opts).map {|offer| offer.to_hash}, cache_file)
+  end
+
   desc "show OFFER_UUID", "show an offer"
   def show(offer_uuid)
     offer = BmxApiRuby::OffersApi.new(client)

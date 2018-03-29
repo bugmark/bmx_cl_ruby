@@ -1,5 +1,5 @@
 class Issue < ThorBase
-  desc "list", "list all issues"
+  desc "list", "list all issue ids"
   option :limit      , desc: "limit number of issues" , type: :numeric
   option :cache_file , desc: "local cache file"       , type: :string
   def list
@@ -7,6 +7,16 @@ class Issue < ThorBase
     list = BmxApiRuby::IssuesApi.new(client)
     cache_file = options["cache_file"] || "issues"
     output(run {list.get_issues(opts).map {|issue| issue.to_hash}}, cache_file)
+  end
+
+  desc "list_details", "list all issue details"
+  option :limit      , desc: "limit number of issues" , type: :numeric
+  option :cache_file , desc: "local cache file"       , type: :string
+  def list_details
+    opts = options[:limit] ? {limit: options[:limit]} : {}
+    list = BmxApiRuby::IssuesApi.new(client)
+    cache_file = options["cache_file"] || "issues"
+    output(run {list.get_issues_detail(opts).map {|issue| issue.to_hash}}, cache_file)
   end
 
   desc "show ISSUE_EXID", "show issue details"
