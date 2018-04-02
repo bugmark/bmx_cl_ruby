@@ -22,3 +22,7 @@ To run the executable:
 
 Bug reports and pull requests are welcome on GitHub at
 https://github.com/bugmark/bmx_cl_ruby.
+
+## Test Badge
+
+[![Build Status](https://travis-ci.org/andyl/BAMRU-Org.svg)](https://travis-ci.org/andyl/BAMRU-Org)
