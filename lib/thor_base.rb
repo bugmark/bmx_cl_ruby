@@ -1,4 +1,5 @@
 require 'bmx_api_ruby'
+require 'iora'
 require 'awesome_print'
 require 'thor'
 require 'yaml'
@@ -165,12 +166,12 @@ class Thor
     end
 
     def usr(cfg)
-      return cfg["usermail"] unless options[:userspec]
+      return cfg["usermail"] unless options&[:userspec]
       options[:userspec].split(':').first
     end
 
     def pwd(cfg)
-      return cfg["password"] unless options[:userspec]
+      return cfg["password"] unless options&[:userspec]
       options[:userspec].split(':').last
     end
   end

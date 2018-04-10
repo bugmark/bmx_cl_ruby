@@ -1,3 +1,3 @@
-class BmxClRuby
+module BmxClRuby
   VERSION = "0.1.0"
 end

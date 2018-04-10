@@ -1,3 +1,6 @@
+require_relative '../bmx_cl_ruby/repo_fetch'
+require_relative '../bmx_cl_ruby/repo_sync'
+
 class Repo < ThorBase
   desc "list", "list all repos"
   option :cache_file  , desc: "local cache file"  , type: :string
@@ -26,16 +29,40 @@ class Repo < ThorBase
 
   desc "create NAME", "create repo"
   option :type, desc: "repo type", type: :string, values: %w(GitHub Test), default: "Test"
-  option :sync, desc: "sync repo on creation (GH only)", type: :boolean
   def create(repo_name)
     repo = BmxApiRuby::ReposApi.new(client)
     opts = {}
-    opts[:sync] = "true" if options[:sync] == true
     output(run {repo.post_repos(options["type"], repo_name, opts)}.to_hash)
   end
 
-  desc "sync REPO_UUID", "sync repo"
-  def sync(_repo_uuid)
-    under_construction
+  desc "fetch", "fetch repo data from source"
+  long_desc <<~EOF
+  Fetch repo data from source.
+
+  `source` specifies a connection string - one of:
+    - `github:<user_name>/<repo_name>`
+    - `yaml:<filepath>`
+  EOF
+  option :source, desc: "data source", type: :string, required: true
+  def fetch
+    iora = BmxClRuby::RepoFetch.new(options[:source])
+    output iora.fetch
+  end
+
+  desc "sync NAME", "sync repo"
+  long_desc <<~EOF
+  Sync all repo issues.
+
+  `name` must be the name of an existing Bugmark repo.
+
+  `source` specifies a connection string - one of:
+    - `github:<user_name>/<repo_name>`
+    - `yaml:<filepath>`
+  EOF
+  option :source, desc: "data source", type: :string, required: true
+  def sync(repo_name)
+    iora = BmxClRuby::RepoSync.new(repo_name, options[:source], client)
+    iora.sync
+    puts "OK"
   end
 end
