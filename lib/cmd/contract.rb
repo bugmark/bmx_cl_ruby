@@ -21,7 +21,7 @@ class Contract < ThorBase
   end
 
   desc "create", "create contract"
-  option :repo       , desc: "repo UUID"                     , type: :string
+  option :tracker       , desc: "tracker UUID"                     , type: :string
   option :issue      , desc: "issue UUID"                    , type: :string
   option :title      , desc: "issue title"                   , type: :string
   option :labels     , desc: "issue labels"                  , type: :string
@@ -30,14 +30,14 @@ class Contract < ThorBase
   def create
     contract = BmxApiRuby::ContractApi.new(client)
     opts   = {}
-    %i(repo issue title labels status maturation).each do |el|
+    %i(tracker issue title labels status maturation).each do |el|
       opts[el] = options[el] unless options[el].nil?
     end
     runput {contract.post_contract_create(opts)}
   end
 
   desc "clone CONTRACT_UUID", "clone contract"
-  option :repo       , desc: "repo UUID"                     , type: :string
+  option :tracker       , desc: "tracker UUID"                     , type: :string
   option :issue      , desc: "issue UUID"                    , type: :string
   option :title      , desc: "issue title"                   , type: :string
   option :labels     , desc: "issue labels"                  , type: :string
@@ -46,7 +46,7 @@ class Contract < ThorBase
   def clone(contract_uuid)
     contract = BmxApiRuby::ContractApi.new(client)
     opts   = {}
-    %i(repo issue title labels status maturation).each do |el|
+    %i(tracker issue title labels status maturation).each do |el|
       opts[el] = options[el] unless options[el].nil?
     end
     runput {contract.post_contract_contract_uuid_clone(cached_value(contract_uuid), opts)}

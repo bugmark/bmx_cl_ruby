@@ -12,7 +12,7 @@ describe "cache" do
   describe "setup" do
     it "default lists" do
       result = `bmx user list`
-      result = `bmx repo list`
+      result = `bmx tracker list`
       expect($?.exitstatus).to eq(0)
       expect(result).to_not be_nil
     end

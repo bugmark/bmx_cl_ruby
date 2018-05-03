@@ -6,7 +6,7 @@ require_relative "./thor_base"
 
 require_relative "./cmd/config"
 require_relative "./cmd/user"
-require_relative "./cmd/repo"
+require_relative "./cmd/tracker"
 require_relative "./cmd/issue"
 require_relative "./cmd/offer"
 require_relative "./cmd/contract"
@@ -26,8 +26,8 @@ class BmxRuby < Thor
   desc "user SUBCOMMAND", "manage user"
   subcommand "user", User
 
-  desc "repo SUBCOMMAND", "manage repo"
-  subcommand "repo", Repo
+  desc "tracker SUBCOMMAND", "manage tracker"
+  subcommand "tracker", Tracker
 
   desc "issue SUBCOMMAND", "manage issue"
   subcommand "issue", Issue

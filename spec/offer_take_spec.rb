@@ -8,16 +8,16 @@ describe "setup" do
     `bmx user list`
     `bmx user deposit cached_users_uuid_first 1000`
     `bmx user create --usermail=#{WORKER} --balance=1000`
-    `bmx repo create BING`
-    `bmx repo list`
-    `bmx issue sync IXID --repo-uuid=cached_repos_uuid_first`
+    `bmx tracker create BING`
+    `bmx tracker list`
+    `bmx issue sync IXID --tracker-uuid=cached_trackers_uuid_first`
     expect($?.exitstatus).to eq(0)
   end
 
   it "has the right counts" do
     result = JSON.parse(`bmx host counts`)
     expect(result["users"]).to  eq(2)
-    expect(result["repos"]).to  eq(1)
+    expect(result["trackers"]).to  eq(1)
     expect(result["issues"]).to eq(1)
   end
 end

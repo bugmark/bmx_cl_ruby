@@ -5,8 +5,8 @@ describe "setup" do
     `bmx host rebuild --affirm=destroy_all_data --with_day_offset=-90`
     `bmx user create --usermail=tst1@bugm.net --password=bugm --balance=1000`
     `bmx user create --usermail=tst2@bugm.net --password=bugm --balance=1000`
-    repo_uuid = JSON.parse(`bmx repo create BING --type=Test`)["uuid"]
-    `bmx issue sync IXID --repo-uuid=#{repo_uuid}`
+    tracker_uuid = JSON.parse(`bmx tracker create BING --type=Test`)["uuid"]
+    `bmx issue sync IXID --tracker-uuid=#{tracker_uuid}`
     expect($?.exitstatus).to eq(0)
   end
 

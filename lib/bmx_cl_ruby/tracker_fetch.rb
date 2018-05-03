@@ -1,9 +1,9 @@
 require 'iora'
 
 module BmxClRuby
-  class RepoFetch
+  class TrackerFetch
 
-    attr_reader :data_source, :repo_data
+    attr_reader :data_source, :tracker_data
 
     def initialize(data_source)
       @data_source = data_source

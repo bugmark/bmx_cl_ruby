@@ -4,11 +4,11 @@ describe "setup" do
   it "creates test elements" do
     `bmx host rebuild --affirm=destroy_all_data`
     `bmx user create --usermail=tst@bugm.net --password=bugm --balance=1000`
-    repo_uuid = JSON.parse(`bmx repo create BING`)["uuid"]
-    result    = JSON.parse(`bmx issue sync IXID --repo-uuid=#{repo_uuid}`)
-    repo      = JSON.parse(`bmx repo show #{repo_uuid}`)
+    tracker_uuid = JSON.parse(`bmx tracker create BING`)["uuid"]
+    result    = JSON.parse(`bmx issue sync IXID --tracker-uuid=#{tracker_uuid}`)
+    tracker      = JSON.parse(`bmx tracker show #{tracker_uuid}`)
     expect($?.exitstatus).to eq(0)
-    expect(repo["issue_count"]).to eq(1)
+    expect(tracker["issue_count"]).to eq(1)
   end
 end
 

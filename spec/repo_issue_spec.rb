@@ -1,39 +1,39 @@
 require 'json'
 require 'iora'
 
-describe "repo/issues" do
-  # describe "repo" do
+describe "tracker/issues" do
+  # describe "tracker" do
   #   it "resets the system" do
   #     result = `bmx host rebuild --affirm=destroy_all_data`
   #     expect($?.exitstatus).to eq(0)
   #     expect(result).to_not be_nil
   #   end
   #
-  #   it "generates a test repo" do
-  #     result = `bmx repo create Binger --type=Test`
+  #   it "generates a test tracker" do
+  #     result = `bmx tracker create Binger --type=Test`
   #     expect($?.exitstatus).to eq(0)
   #     expect(result).to_not be_nil
   #   end
   #
   #   it "returns the right count" do
   #     result = JSON.parse(`bmx host counts`)
-  #     expect(result["repos"]).to eq(1)
+  #     expect(result["trackers"]).to eq(1)
   #   end
   # end
   #
   # describe "issues" do
-  #   it "resets the system and generates a repo" do
+  #   it "resets the system and generates a tracker" do
   #     result = `bmx host rebuild --affirm=destroy_all_data`
   #     expect($?.exitstatus).to eq(0)
   #     expect(result).to_not be_nil
-  #     result = `bmx repo create Banger --type=Test`
+  #     result = `bmx tracker create Banger --type=Test`
   #     expect($?.exitstatus).to eq(0)
   #     expect(result).to_not be_nil
   #   end
   #
   #   it "generates a test issue" do
-  #     repo_uuid = JSON.parse(`bmx repo list`).first["uuid"]
-  #     result = `bmx issue sync EXID1 --repo-uuid=#{repo_uuid} --status=open`
+  #     tracker_uuid = JSON.parse(`bmx tracker list`).first["uuid"]
+  #     result = `bmx issue sync EXID1 --tracker-uuid=#{tracker_uuid} --status=open`
   #     expect($?.exitstatus).to eq(0)
   #     expect(result).to_not be_nil
   #   end
@@ -66,26 +66,26 @@ describe "repo/issues" do
   #   end
   # end
 
-  describe "repo sync" do
+  describe "tracker sync" do
 
-    it "resets the system and generates a repo" do
+    it "resets the system and generates a tracker" do
       result = `bmx host rebuild --affirm=destroy_all_data`
       expect($?.exitstatus).to eq(0)
       expect(result).to_not be_nil
-      result = `bmx repo create Banger --type=Test`
+      result = `bmx tracker create Banger --type=Test`
       expect($?.exitstatus).to eq(0)
       expect(result).to_not be_nil
     end
 
     it "loads the issue oracle" do
-      repo = Iora.new(:yaml, "spec/data/test1.yml")
-      expect(repo.issues.length).to eq(2)
+      tracker = Iora.new(:yaml, "spec/data/test1.yml")
+      expect(tracker.issues.length).to eq(2)
     end
 
     it "generates a test issue" do
       puts "ASDF QWER"
-      repo_name = JSON.parse(`bmx repo list`).first["name"]
-      result = `bmx repo sync #{repo_name} --source='yaml:spec/data/test1.yml'`
+      tracker_name = JSON.parse(`bmx tracker list`).first["name"]
+      result = `bmx tracker sync #{tracker_name} --source='yaml:spec/data/test1.yml'`
       puts result
       # expect($?.exitstatus).to eq(1)
       expect(result).to_not be_nil

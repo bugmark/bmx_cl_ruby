@@ -6,8 +6,8 @@ describe "setup" do
     admin_uuid = JSON.parse(`bmx user list`).first["uuid"]
     `bmx user deposit #{admin_uuid} 20000`
     `bmx user create --usermail=tst@bugm.net --password=bugm --balance=10000`
-    repo_uuid = JSON.parse(`bmx repo create BING --type=Test`)["uuid"]
-    `bmx issue sync IXID --repo-uuid=#{repo_uuid}`
+    tracker_uuid = JSON.parse(`bmx tracker create BING --type=Test`)["uuid"]
+    `bmx issue sync IXID --tracker-uuid=#{tracker_uuid}`
     expect($?.exitstatus).to eq(0)
   end
 end

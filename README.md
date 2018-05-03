@@ -20,5 +20,5 @@ To run the executable:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at
+Bug trackerrts and pull requests are welcome on GitHub at
 https://github.com/bugmark/bmx_cl_ruby.

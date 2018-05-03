@@ -10,7 +10,7 @@ _bmx_cl_ruby()
 
     case ${COMP_CWORD} in
         1)
-            COMPREPLY=($(compgen -W "config host user repo issue offer contract position escrow event cache" -- ${cur}))
+            COMPREPLY=($(compgen -W "config host user tracker issue offer contract position escrow event cache" -- ${cur}))
             ;;
         2)
             case ${prev} in
@@ -23,7 +23,7 @@ _bmx_cl_ruby()
                 user)
 					COMPREPLY=($(compgen -W "help list show create deposit withdraw" -- ${cur}))
                     ;;
-                repo)
+                tracker)
 					COMPREPLY=($(compgen -W "help list show create sync" -- ${cur}))
                     ;;
                 issue)

@@ -39,7 +39,7 @@ class Issue < ThorBase
 
   desc "sync ISSUE_EXID", "create or update an issue"
   option :exid       , desc: "TBD" , type: :string
-  option :repo_uuid  , desc: "UUID of issue repository" , type: :string
+  option :tracker_uuid  , desc: "UUID of issue trackersitory" , type: :string
   option :title      , desc: "TBD" , type: :string
   option :status     , desc: "TBD" , type: :string
   option :labels     , desc: "TBD" , type: :string
@@ -48,7 +48,7 @@ class Issue < ThorBase
     %i(uuid title status labels).each do |lbl|
       opts[lbl] = options[lbl] if options[lbl]
     end
-    %i(repo_uuid).each do |el|
+    %i(tracker_uuid).each do |el|
       opts[el] = cached_value(options[el]) unless options[el].nil?
     end
     issue  = BmxApiRuby::IssuesApi.new(client)

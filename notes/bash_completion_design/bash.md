@@ -21,7 +21,7 @@
     |  	   |--> create
     |  	   |--> deposit
     |  	   |--> withdraw
-	|--> repo
+	|--> tracker
     |  	   |--> help
     |  	   |--> list
     |  	   |--> show

@@ -64,7 +64,7 @@ class Offer < ThorBase
   option :side              , desc: "fixed or unfixed"              , type: :string  , required: true
   option :volume            , desc: "number of positions"           , type: :numeric , required: true
   option :price             , desc: "price (between 0.0 and 1.00)"  , type: :numeric , required: true
-  option :repo              , desc: "repo UUID"                     , type: :string
+  option :tracker              , desc: "tracker UUID"                     , type: :string
   option :issue             , desc: "issue UUID"                    , type: :string
   option :title             , desc: "issue title"                   , type: :string
   option :labels            , desc: "issue labels"                  , type: :string
@@ -84,7 +84,7 @@ class Offer < ThorBase
     %i(title labels status maturation maturation_offset expiration expiration_offset aon poolable).each do |el|
       opts[el] = options[el] unless options[el].nil?
     end
-    %i(repo issue).each do |el|
+    %i(tracker issue).each do |el|
       opts[el] = cached_value(options[el]) unless options[el].nil?
     end
     runput {offer.post_offers_buy(side, volume, price, opts)}
@@ -99,7 +99,7 @@ class Offer < ThorBase
   option :side              , desc: "fixed or unfixed"              , type: :string
   option :volume            , desc: "number of positions"           , type: :numeric
   option :price             , desc: "price (between 0.0 and 1.00)"  , type: :numeric
-  option :repo              , desc: "repo UUID"                     , type: :string
+  option :tracker              , desc: "tracker UUID"                     , type: :string
   option :issue             , desc: "issue UUID"                    , type: :string
   option :title             , desc: "issue title"                   , type: :string
   option :labels            , desc: "issue labels"                  , type: :string
@@ -116,7 +116,7 @@ class Offer < ThorBase
     %i(side volume price title labels status maturation expiration aon poolable).each do |el|
       opts[el] = options[el] unless options[el].nil?
     end
-    %i(repo issue).each do |el|
+    %i(tracker issue).each do |el|
       opts[el] = cached_value(options[el]) unless options[el].nil?
     end
     runput {offer.post_offers_uuid_clone(offer_uuid, opts)}
