@@ -64,7 +64,7 @@ class Offer < ThorBase
   option :side              , desc: "fixed or unfixed"              , type: :string  , required: true
   option :volume            , desc: "number of positions"           , type: :numeric , required: true
   option :price             , desc: "price (between 0.0 and 1.00)"  , type: :numeric , required: true
-  option :tracker              , desc: "tracker UUID"                     , type: :string
+  option :tracker           , desc: "tracker UUID"                  , type: :string
   option :issue             , desc: "issue UUID"                    , type: :string
   option :title             , desc: "issue title"                   , type: :string
   option :labels            , desc: "issue labels"                  , type: :string
@@ -99,7 +99,7 @@ class Offer < ThorBase
   option :side              , desc: "fixed or unfixed"              , type: :string
   option :volume            , desc: "number of positions"           , type: :numeric
   option :price             , desc: "price (between 0.0 and 1.00)"  , type: :numeric
-  option :tracker              , desc: "tracker UUID"                     , type: :string
+  option :tracker           , desc: "tracker UUID"                  , type: :string
   option :issue             , desc: "issue UUID"                    , type: :string
   option :title             , desc: "issue title"                   , type: :string
   option :labels            , desc: "issue labels"                  , type: :string

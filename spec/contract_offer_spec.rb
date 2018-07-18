@@ -5,7 +5,7 @@ describe "setup" do
     `bmx host rebuild --affirm=destroy_all_data`
     `bmx user create --usermail=tst@bugm.net --password=bugm --balance=1000`
     tracker_uuid = JSON.parse(`bmx tracker create BING`)["uuid"]
-    result    = JSON.parse(`bmx issue sync IXID --tracker-uuid=#{tracker_uuid}`)
+    result       = JSON.parse(`bmx issue sync IXID --tracker-uuid=#{tracker_uuid}`)
     tracker      = JSON.parse(`bmx tracker show #{tracker_uuid}`)
     expect($?.exitstatus).to eq(0)
     expect(tracker["issue_count"]).to eq(1)
@@ -42,6 +42,11 @@ describe "offer" do
       result = `bmx offer create_buy #{opts}`
       expect($?.exitstatus).to eq(0)
       expect(result).to_not be_nil
+    end
+
+    it "finds the offer" do
+      counts = JSON.parse(`bmx host counts`)
+      expect(counts["offers_open_bf"]).to eq(1)
     end
 
     it "creates an unfixed offer" do
@@ -134,7 +139,7 @@ describe "contract" do
       expect($?.exitstatus).to eq(0)
       expect(result).to_not be_nil
     end
-    
+
     it "gets the right contract counts" do
       result = JSON.parse(`bmx contract show cached_contracts_uuid_first`)
       expect(result["total_value"]).to eq(10)

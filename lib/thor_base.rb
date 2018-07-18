@@ -166,13 +166,15 @@ class Thor
     end
 
     def usr(cfg)
-      return cfg["usermail"] unless options&[:userspec]
-      options[:userspec].split(':').first
+      spec = options[:userspec]
+      return cfg["usermail"] unless spec
+      spec.split(':').first
     end
 
     def pwd(cfg)
-      return cfg["password"] unless options&[:userspec]
-      options[:userspec].split(':').last
+      spec = options[:userspec]
+      return cfg["password"] unless spec
+      spec.split(':').last
     end
   end
 end
