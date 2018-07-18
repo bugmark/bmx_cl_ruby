@@ -5,7 +5,10 @@ require_relative "./bmx_cl_ruby/version"
 require_relative "./thor_base"
 
 require_relative "./cmd/config"
+require_relative "./cmd/gq_user"
+require_relative "./cmd/gq_host"
 require_relative "./cmd/user"
+require_relative "./cmd/host"
 require_relative "./cmd/tracker"
 require_relative "./cmd/issue"
 require_relative "./cmd/offer"
@@ -13,12 +16,17 @@ require_relative "./cmd/contract"
 require_relative "./cmd/escrow"
 require_relative "./cmd/position"
 require_relative "./cmd/event"
-require_relative "./cmd/host"
 require_relative "./cmd/cache"
 
 class BmxRuby < Thor
   desc "config SUBCOMMAND", "set BMX host and user credentials"
   subcommand "config", Config
+
+  desc "gqhost SUBCOMMAND", "display host info (graphql)"
+  subcommand "host", GqHost
+
+  desc "gquser SUBCOMMAND", "manage user (grqphql)"
+  subcommand "user", GqUser
 
   desc "host SUBCOMMAND", "display host info"
   subcommand "host", Host
