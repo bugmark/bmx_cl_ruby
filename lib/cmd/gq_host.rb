@@ -1,24 +1,19 @@
+require_relative "../gq/host"
+
 class GqHost < ThorBase
   DEFAULT_STRFTIME = "%Y-%m-%d_%H:%M"
 
   desc "info", "show current host info"
   option :strftime , desc: "date format", type: :string
   def info
-    host = BmxApiRuby::HostApi.new(client)
-    strf = options[:strftime] || DEFAULT_STRFTIME
-    runput { host.get_host_info({strftime: strf}) }
-  end
-
-  desc "ping", "ping the host"
-  def ping
-    host = BmxApiRuby::HostApi.new(client)
-    runput { host.get_host_ping }
+    host = Gq::Host.new(client)
+    runput { host.get_host_info }
   end
 
   desc "counts", "show host object count"
   def counts
-    host = BmxApiRuby::HostApi.new(client)
-    runput {host.get_host_counts}
+    host = Gq::Host.new(client)
+    runput { host.get_host_counts }
   end
 
   desc "next_week_ends", "show future week-ending dates"

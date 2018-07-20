@@ -23,10 +23,10 @@ class BmxRuby < Thor
   subcommand "config", Config
 
   desc "gqhost SUBCOMMAND", "display host info (graphql)"
-  subcommand "host", GqHost
+  subcommand "gqhost", GqHost
 
   desc "gquser SUBCOMMAND", "manage user (grqphql)"
-  subcommand "user", GqUser
+  subcommand "gquser", GqUser
 
   desc "host SUBCOMMAND", "display host info"
   subcommand "host", Host
