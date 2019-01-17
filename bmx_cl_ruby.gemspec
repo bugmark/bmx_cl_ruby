@@ -31,9 +31,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency  "rake"          ,  "~> 12.3"
-  spec.add_development_dependency  "rspec"         ,  "~> 3.8"
-  spec.add_dependency              "thor"          ,  "~> 0.20"
-  spec.add_dependency              "pry"           ,  "~> 0.12"
-  spec.add_dependency              "awesome_print" ,  "~> 1.8"
+  spec.add_development_dependency  "rake"           ,  "~> 12.3"
+  spec.add_development_dependency  "rspec"          ,  "~> 3.8"
+  spec.add_dependency              "thor"           ,  "~> 0.20"
+  spec.add_dependency              "pry"            ,  "~> 0.12"
+  spec.add_dependency              "awesome_print"  ,  "~> 1.8"
+  spec.add_dependency              "graphql-client" ,  "~> 0.14"
 end
