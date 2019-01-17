@@ -1,5 +1,5 @@
-require 'bmx_api_ruby'
-require 'iora'
+require 'bmx_api_ruby'    unless BMCL == true
+require 'iora'            unless BMCL == true
 require 'awesome_print'
 require 'thor'
 require 'yaml'

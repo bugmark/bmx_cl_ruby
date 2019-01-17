@@ -30,10 +30,6 @@
 ## TBD
 
 - [ ] reset the system
-- [ ] 
-
-
-
 - [ ] add version ID
 - [ ] add version command "-v, --version" [stackof][vers1]
 
