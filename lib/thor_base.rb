@@ -1,5 +1,5 @@
-require 'bmx_api_ruby'    unless BMCL == true
-require 'iora'            unless BMCL == true
+require 'bmx_api_ruby'    unless defined?(BMCL)
+require 'iora'            unless defined?(BMCL)
 require 'awesome_print'
 require 'thor'
 require 'yaml'
@@ -49,8 +49,8 @@ class Thor
       shell.say
       class_options_help(shell)
 
-      # Add this line if you want to print custom text at the end of your help output.
-      # (similar to how Rails does it)
+      # Add this line if you want to print custom text at the end
+      # of your help output.  (similar to how Rails does it)
       shell.say 'Get command help with -h (or --help).'
     end
   end

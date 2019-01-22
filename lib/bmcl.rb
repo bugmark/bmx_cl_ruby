@@ -7,6 +7,7 @@ require_relative "./bmcl/version"
 require_relative "./thor_base"
 
 require_relative "./bmcl_cmd/config"
+require_relative "./bmcl_cmd/graphql"
 require_relative "./bmcl_cmd/user"
 # require_relative "./bmcl_cmd/tracker"
 require_relative "./bmcl_cmd/issue"
@@ -24,6 +25,9 @@ class Bmcl < Thor
 
   desc "host SUBCOMMAND", "display host info"
   subcommand "host", Host
+
+  desc "graphql SUBCOMMAND", "interact via GraphQL"
+  subcommand "graphql", Graphql
 
   desc "user SUBCOMMAND", "manage user"
   subcommand "user", User
