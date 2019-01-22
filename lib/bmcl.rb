@@ -3,7 +3,8 @@ require "thor"
 
 BMCL = true
 
-require_relative "./bmcl/version"
+require_relative "./bmcl_base/version"
+require_relative "./bmcl_base/client"
 require_relative "./thor_base"
 
 require_relative "./bmcl_cmd/config"
