@@ -1,5 +1,3 @@
-require 'pry'
-
 class Offer < ThorBase
   desc "list", "list offers"
   option :with_type   , desc: "type query"       , type: :string
@@ -41,7 +39,7 @@ class Offer < ThorBase
   long_desc <<-EOF
     This command creates a buy offer.
 
-    Note that you can specify a specific maturation/expiration date, or an 
+    Note that you can specify a specific maturation/expiration date, or an
     offset.  Offsets are time projected forward from the current system time.
     valid offset strings include:
 

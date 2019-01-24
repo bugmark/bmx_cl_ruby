@@ -1,5 +1,3 @@
-require 'pry'
-
 class User < ThorBase
   desc "list", "list users"
   option :with_email  , desc: "filter by email"   , type: :string
