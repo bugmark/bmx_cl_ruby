@@ -14,13 +14,14 @@ After that: to install the gem:
     
 ## Usage
 
-To run the executable:
+To run the executables:
 
-    bmx_cl_ruby
+    bmx
+    bmcl
 
 ## Contributing
 
-Bug trackerrts and pull requests are welcome on GitHub at
+Bug reports and pull requests are welcome on GitHub at
 https://github.com/bugmark/bmx_cl_ruby.
 
 ## Test Badge
