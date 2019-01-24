@@ -9,9 +9,9 @@ First: install Ruby on your machine!
 After that: to install the gem:
 
     gem install specific_install
-    gem specific_install https://github.com/bugmark/iora
-    gem specific_install https://github.com/bugmark/bmx_api_ruby
-    gem specific_install https://github.com/bugmark/bmx_cl_ruby
+    gem specific_install bugmark/iora
+    gem specific_install bugmark/bmx_api_ruby
+    gem specific_install bugmark/bmx_cl_ruby <branch>
     
 ## Usage
 
