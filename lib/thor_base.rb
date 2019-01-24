@@ -5,6 +5,8 @@ require 'thor'
 require 'yaml'
 require 'json'
 
+require_relative './bmcl_base/client'
+
 CFG_FILE = "~/.bmx_ruby_cfg.yaml"
 
 DEFAULTS = {
@@ -151,6 +153,10 @@ class Thor
       else
         puts JSON.pretty_generate(data)
       end
+    end
+
+    def graphql_client
+      @graphql_client ||= BmclBase::Client.new(config)
     end
 
     def client

@@ -24,11 +24,11 @@ class Bmcl < Thor
   desc "config SUBCOMMAND", "set BMX host and user credentials"
   subcommand "config", Config
 
-  desc "host SUBCOMMAND", "display host info"
-  subcommand "host", Host
-
   desc "graphql SUBCOMMAND", "interact via GraphQL"
   subcommand "graphql", Graphql
+
+  desc "host SUBCOMMAND", "display host info"
+  subcommand "host", Host
 
   desc "user SUBCOMMAND", "manage user"
   subcommand "user", User

@@ -11,15 +11,15 @@ class BmclBase
     end
 
     def schema
-      client.schema.to_json
+      client.schema
     end
 
-    def query(string)
-      "QUERY UNDER CONSTRUCTION [#{string}]"
+    def query(query_string)
+      client.query("query #{query_string}")
     end
 
-    def mutation(string)
-      "MUTATION UNDER CONSTRUCTION [#{string}]"
+    def mutation(mutation_string)
+      client.query("mutation #{mutation_string}")
     end
 
     private
