@@ -1,13 +1,16 @@
 class User < ThorBase
+
+  USER_FIELDS = "{id uuid email balance}"
+
   desc "list", "list users"
   def list
-    expression = "{users {id uuid email balance}}"
+    expression = "{users #{USER_FIELDS}}"
     puts graphql_client.query(expression).to_h
   end
 
   desc "show ID", "show user information"
   def show(id)
-    expression = "{user(id: #{id}) {id uuid email balance}}"
+    expression = "{user(id: #{id}) #{USER_FIELDS}}"
     puts graphql_client.query(expression).to_h
   end
 
@@ -44,31 +47,31 @@ class User < ThorBase
   #   runput {user.get_users_uuid(cached_value(user_uuid), opts)}
   # end
 
-  desc "create", "create a user"
-  long_desc <<~EOF
-    Create a user with an optional opening balance.
-
-    Default balance is zero.
-  EOF
-  option :usermail , desc: "USERMAIL" , type: :string, required: true
-  option :password , desc: "PASSWORD" , type: :string, default: "bugpass"
-  option :balance  , desc: "BALANCE"  , type: :numeric
-  def create
-    user = BmxApiRuby::UsersApi.new(client)
-    opts = {}
-    opts[:balance] = options[:balance] unless options[:balance].nil?
-    runput {user.post_users(options[:usermail], options[:password], opts)}
-  end
-
-  desc "deposit UUID AMOUNT", "deposit user tokens"
-  def deposit(uuid, amount)
-    user = BmxApiRuby::UsersApi.new(client)
-    output user.put_users_uuid_deposit(amount, cached_value(uuid))
-  end
-
-  desc "withdraw UUID AMOUNT", "withdraw user tokens"
-  def withdraw(uuid,  amount)
-    user = BmxApiRuby::UsersApi.new(client)
-    output user.put_users_uuid_withdraw(amount, uuid)
-  end
+  # desc "create", "create a user"
+  # long_desc <<~EOF
+  #   Create a user with an optional opening balance.
+  #
+  #   Default balance is zero.
+  # EOF
+  # option :usermail , desc: "USERMAIL" , type: :string, required: true
+  # option :password , desc: "PASSWORD" , type: :string, default: "bugpass"
+  # option :balance  , desc: "BALANCE"  , type: :numeric
+  # def create
+  #   user = BmxApiRuby::UsersApi.new(client)
+  #   opts = {}
+  #   opts[:balance] = options[:balance] unless options[:balance].nil?
+  #   runput {user.post_users(options[:usermail], options[:password], opts)}
+  # end
+  #
+  # desc "deposit UUID AMOUNT", "deposit user tokens"
+  # def deposit(uuid, amount)
+  #   user = BmxApiRuby::UsersApi.new(client)
+  #   output user.put_users_uuid_deposit(amount, cached_value(uuid))
+  # end
+  #
+  # desc "withdraw UUID AMOUNT", "withdraw user tokens"
+  # def withdraw(uuid,  amount)
+  #   user = BmxApiRuby::UsersApi.new(client)
+  #   output user.put_users_uuid_withdraw(amount, uuid)
+  # end
 end

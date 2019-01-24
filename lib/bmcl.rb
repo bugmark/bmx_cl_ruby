@@ -10,7 +10,7 @@ require_relative "./thor_base"
 require_relative "./bmcl_cmd/config"
 require_relative "./bmcl_cmd/graphql"
 require_relative "./bmcl_cmd/user"
-# require_relative "./bmcl_cmd/tracker"
+require_relative "./bmcl_cmd/tracker"
 require_relative "./bmcl_cmd/issue"
 require_relative "./bmcl_cmd/offer"
 require_relative "./bmcl_cmd/contract"
@@ -33,8 +33,8 @@ class Bmcl < Thor
   desc "user SUBCOMMAND", "manage user"
   subcommand "user", User
 
-  # desc "tracker SUBCOMMAND", "manage tracker"
-  # subcommand "tracker", Tracker
+  desc "tracker SUBCOMMAND", "manage tracker"
+  subcommand "tracker", Tracker
 
   desc "issue SUBCOMMAND", "manage issue"
   subcommand "issue", Issue
