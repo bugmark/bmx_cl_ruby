@@ -1,36 +1,48 @@
 class User < ThorBase
   desc "list", "list users"
-  option :with_email  , desc: "filter by email"   , type: :string
-  option :cache_file  , desc: "local cache file"  , type: :string
   def list
-    user = BmxApiRuby::UsersApi.new(client)
-    opts = {}
-    opts[:with_email] = options["with_email"] if options["with_email"]
-    cache_file = options["cache_file"] || "users"
-    output(run {user.get_users(opts).map {|x| x.to_hash}}, cache_file)
+    expression = "{users {id uuid email balance}}"
+    puts graphql_client.query(expression).to_h
   end
 
-  desc "list details", "list user details"
-  option :with_email  , desc: "filter by email"   , type: :string
-  option :cache_file  , desc: "local cache file"  , type: :string
-  def list_details
-    user = BmxApiRuby::UsersApi.new(client)
-    opts = {}
-    opts[:with_email] = options["with_email"] if options["with_email"]
-    cache_file = options["cache_file"] || "users"
-    output(run {user.get_users_detail(opts).map {|x| x.to_hash}}, cache_file)
+  desc "show ID", "show user information"
+  def show(id)
+    expression = "{user(id: #{id}) {id uuid email balance}}"
+    puts graphql_client.query(expression).to_h
   end
 
-  desc "show USER_UUID", "show user information"
-  option :offers    , desc: "include offers"    , type: :boolean
-  option :positions , desc: "include positions" , type: :boolean
-  def show(user_uuid)
-    opts = {}
-    opts[:offers]    = options["offers"]    unless options["offers"].nil?
-    opts[:positions] = options["positions"] unless options["positions"].nil?
-    user = BmxApiRuby::UsersApi.new(client)
-    runput {user.get_users_uuid(cached_value(user_uuid), opts)}
-  end
+  # desc "list", "list users"
+  # option :with_email  , desc: "filter by email"   , type: :string
+  # option :cache_file  , desc: "local cache file"  , type: :string
+  # def list
+  #   user = BmxApiRuby::UsersApi.new(client)
+  #   opts = {}
+  #   opts[:with_email] = options["with_email"] if options["with_email"]
+  #   cache_file = options["cache_file"] || "users"
+  #   output(run {user.get_users(opts).map {|x| x.to_hash}}, cache_file)
+  # end
+  #
+  # desc "list details", "list user details"
+  # option :with_email  , desc: "filter by email"   , type: :string
+  # option :cache_file  , desc: "local cache file"  , type: :string
+  # def list_details
+  #   user = BmxApiRuby::UsersApi.new(client)
+  #   opts = {}
+  #   opts[:with_email] = options["with_email"] if options["with_email"]
+  #   cache_file = options["cache_file"] || "users"
+  #   output(run {user.get_users_detail(opts).map {|x| x.to_hash}}, cache_file)
+  # end
+  #
+  # desc "show USER_UUID", "show user information"
+  # option :offers    , desc: "include offers"    , type: :boolean
+  # option :positions , desc: "include positions" , type: :boolean
+  # def show(user_uuid)
+  #   opts = {}
+  #   opts[:offers]    = options["offers"]    unless options["offers"].nil?
+  #   opts[:positions] = options["positions"] unless options["positions"].nil?
+  #   user = BmxApiRuby::UsersApi.new(client)
+  #   runput {user.get_users_uuid(cached_value(user_uuid), opts)}
+  # end
 
   desc "create", "create a user"
   long_desc <<~EOF
