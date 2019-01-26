@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/bmcl"
+require_relative "../lib/bmg"
 
-Bmcl.start(ARGV)
+Bmg.start(ARGV)

@@ -1,4 +1,4 @@
-require_relative '../bmcl_base/client'
+require_relative '../bmg_base/client'
 
 class Host < ThorBase
   DEFAULT_STRFTIME = "%Y-%m-%d_%H:%M"

@@ -5,7 +5,7 @@ require 'thor'
 require 'yaml'
 require 'json'
 
-require_relative './bmcl_base/client'
+require_relative './bmg_base/client'
 
 CFG_FILE = "~/.bmx_ruby_cfg.yaml"
 
@@ -156,7 +156,7 @@ class Thor
     end
 
     def graphql_client
-      @graphql_client ||= BmclBase::Client.new(config)
+      @graphql_client ||= BmgBase::Client.new(config)
     end
 
     def client

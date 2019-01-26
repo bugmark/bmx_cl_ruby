@@ -1,7 +1,7 @@
 require "rubygems"
 require "thor"
 
-require_relative "./bmx_cl_ruby/version"
+require_relative "./base/version"
 require_relative "./thor_base"
 
 require_relative "./cmd/config"

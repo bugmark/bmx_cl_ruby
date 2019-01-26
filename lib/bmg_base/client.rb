@@ -1,7 +1,7 @@
 require 'graphlient'
 require 'base64'
 
-class BmclBase
+class BmgBase
   class Client
 
     attr_reader :config

@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "bmx_cl_ruby/version"
+require "base/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "bugmark_cl"
-  spec.version       = BmxClRuby::VERSION
+  spec.version       = Base::VERSION
   spec.authors       = ["andyl"]
   spec.email         = ["andy@r210.com"]
 
